@@ -60,7 +60,7 @@ foreach my $func (@ExtUtils::Command::EXPORT,
 
 =head1 DESCRIPTION
 
-Thin wrapper around ExtUtils::Command. See L<ExtUtils::Command>
-for a description of available commands.
+Thin wrapper around C<ExtUtils::Command>. See L<ExtUtils::Command> for a
+description of available commands.
 
 =cut
