@@ -5,45 +5,45 @@ package Shell::Command;
 # takes effect.
 BEGIN {
     *CORE::GLOBAL::exit = sub {
-	CORE::exit($_[0]) unless caller eq 'ExtUtils::Command';
+        CORE::exit($_[0]) unless caller eq 'ExtUtils::Command';
 
-	my $exit = $_[0] || 0;
-	die "exit: $exit\n";
+        my $exit = $_[0] || 0;
+        die "exit: $exit\n";
     };
 }
 
 use ExtUtils::Command ();
 use Exporter;
 
-@ISA = qw(Exporter);
-@EXPORT 	= @ExtUtils::Command::EXPORT;
-@EXPORT_OK 	= @ExtUtils::Command::EXPORT_OK;
+@ISA       = qw(Exporter);
+@EXPORT    = @ExtUtils::Command::EXPORT;
+@EXPORT_OK = @ExtUtils::Command::EXPORT_OK;
 
 
 use strict;
 
 foreach my $func (@ExtUtils::Command::EXPORT,
-		  @ExtUtils::Command::EXPORT_OK)
+                  @ExtUtils::Command::EXPORT_OK)
 {
     no strict 'refs';
     *{$func} = sub {
-	local @ARGV = @_;
+        local @ARGV = @_;
 
-	my $ret;
-	eval {
-	    $ret = &{'ExtUtils::Command::'.$func};
-	};
-	if( $@ =~ /^exit: (\d+)\n$/ ) {
-	    $ret = !$1;
-	}
-	elsif( $@ ) {
-	    die $@;
-	}
-	else {
-	    $ret = 1 unless defined $ret and length $ret;
-	}
+        my $ret;
+        eval {
+            $ret = &{'ExtUtils::Command::'.$func};
+        };
+        if( $@ =~ /^exit: (\d+)\n$/ ) {
+            $ret = !$1;
+        }
+        elsif( $@ ) {
+            die $@;
+        }
+        else {
+            $ret = 1 unless defined $ret and length $ret;
+        }
 
-	return $ret;
+        return $ret;
     };
 }
 
