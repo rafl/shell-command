@@ -1,6 +1,5 @@
 package Shell::Command;
-
-$VERSION = 0.04;
+# ABSTRACT: Cross-platform functions emulating common shell commands
 
 # This must come first before ExtUtils::Command is loaded to ensure it
 # takes effect.
@@ -23,8 +22,8 @@ use Exporter;
 
 use strict;
 
-foreach my $func (@ExtUtils::Command::EXPORT, 
-		  @ExtUtils::Command::EXPORT_OK) 
+foreach my $func (@ExtUtils::Command::EXPORT,
+		  @ExtUtils::Command::EXPORT_OK)
 {
     no strict 'refs';
     *{$func} = sub {
@@ -51,11 +50,6 @@ foreach my $func (@ExtUtils::Command::EXPORT,
 
 1;
 
-
-=head1 NAME
-
-Shell::Command - Cross-platform functions emulating common shell commands
-
 =head1 SYNOPSIS
 
   use Shell::Command;
@@ -68,12 +62,5 @@ Shell::Command - Cross-platform functions emulating common shell commands
 
 Thin wrapper around ExtUtils::Command. See L<ExtUtils::Command>
 for a description of available commands.
-
-=head1 AUTHOR
-
-Michael G Schwern C<schwern@pobox.com>.
-
-Currently maintained by
-Randy Kobes C<r.kobes@uwinnipeg.ca>.
 
 =cut
