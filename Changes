@@ -1,0 +1,5 @@
+0.05  Mon, 28 Feb 2011 10:16:44 +0100
+  - Initial release of Shell::Command to CPAN as part of a Shell-Command
+    distribution. This module has been split off the ExtUtils-Command
+    distribution from CPAN. Future ExtUtils-Command uploads will not include the
+    Shell::Command module anymore.
